@@ -29,7 +29,7 @@ const Navbar = async () => {
   });
 
   return (
-    <header className="border-b border-gray-200 bg-white">
+    <header className="border-b border-gray-200 bg-white sticky z-10 top-0">
       <nav className="mx-auto max-w-7xl px-4">
         <div className="flex justify-between items-center">
           {/* Top Date */}

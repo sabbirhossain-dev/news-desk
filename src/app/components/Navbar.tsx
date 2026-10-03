@@ -31,33 +31,34 @@ const Navbar = async () => {
   return (
     <header className="border-b border-gray-200 bg-white">
       <nav className="mx-auto max-w-7xl px-4">
-        {/* Top Date */}
-        <div className="flex items-center justify-between  pt-3">
-          <p className="text-sm text-gray-500">{date}</p>
+        <div className="flex justify-between items-center">
+          {/* Top Date */}
+          <div className="flex items-center justify-between  pt-3">
+            <p className="text-sm text-gray-500">{date}</p>
+          </div>
 
+          {/* Logo */}
+          <div className="flex flex-col items-center justify-center pb-3">
+            <Link href="/" className="inline-block">
+              <Image
+                src={logo}
+                alt="Newsline"
+                width={150}
+                height={70}
+                priority
+                className="h-auto w-[80px] object-contain sm:w-[100px] pt-4 pb-2"
+              />
+            </Link>
+
+            <p className="text-[10px] tracking-[0.25em] text-gray-500 uppercase">
+              News • Truth • World
+            </p>
+          </div>
           <div className="hidden items-center gap-4 text-sm text-gray-500 sm:flex">
             <span>বাংলাদেশ</span>
             <span>•</span>
             <span>বিশ্ব সংবাদ</span>
           </div>
-        </div>
-
-        {/* Logo */}
-        <div className="flex flex-col items-center justify-center pb-3">
-          <Link href="/" className="inline-block">
-            <Image
-              src={logo}
-              alt="Newsline"
-              width={180}
-              height={70}
-              priority
-              className="h-auto w-[100px] object-contain sm:w-[120px] -mt-5"
-            />
-          </Link>
-
-          <p className="mt-2 text-[12px] tracking-[0.25em] text-gray-500 uppercase">
-            News • Truth • World
-          </p>
         </div>
 
         {/* Navigation */}

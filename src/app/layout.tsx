@@ -6,6 +6,7 @@ import Marquee from "./components/Marquee";
 
 const notoSerifBengali = Noto_Serif_Bengali({
   subsets: ["latin", "bengali"],
+  variable: "--font-noto-serif-bengali",
 });
 
 export const metadata: Metadata = {
@@ -15,11 +16,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${notoSerifBengali} h-full antialiased`}>
+    <html
+      lang="en"
+      data-theme="light"
+      className={`${notoSerifBengali.variable} h-full antialiased`}
+    >
       <body className="min-h-full flex flex-col">
         <Navbar />
         <Marquee />
-        <main className="max-w-7xl mx-auto">{children}</main>
+        <main className="max-w-7xl mx-auto w-full">{children}</main>
       </body>
     </html>
   );

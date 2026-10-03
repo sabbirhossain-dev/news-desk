@@ -20,7 +20,7 @@ const NavCategory = ({ item }: { item: INavLinks }) => {
     <>
       <Link
         href={`/category/${item.slug}`}
-        className={`group relative inline-flex whitespace-nowrap px-3 py-2 text-sm font-semibold transition-colors duration-300 ${
+        className={`group relative inline-flex whitespace-nowrap px-3 py-2 text-sm font-extrabold transition-colors duration-300 ${
           isActive ? "text-green-700" : "text-gray-700 hover:text-green-700"
         }`}
       >

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import MarqueeText from "react-marquee-text";
 import "react-marquee-text/dist/styles.css";
 
@@ -19,9 +20,14 @@ const Marquee = async () => {
         <MarqueeText direction="right" duration={15}>
           <div className="flex items-center whitespace-nowrap animate-marquee">
             {[...headlines, ...headlines].map((item, index) => (
-              <span key={`${item.id}-${index}`} className="font-medium py-1">
-                {item.title}
-                <span className="px-5 font-bold text-lg">•</span>
+              <span
+                key={`${item.id}-${index}`}
+                className="font-medium py-1 hover:text-black transition-colors duration-500"
+              >
+                <Link href={`/article/${item.id}`}>
+                  {item.title}
+                  <span className="px-5 font-bold text-lg">•</span>
+                </Link>
               </span>
             ))}
           </div>

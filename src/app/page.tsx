@@ -1,4 +1,6 @@
+import Link from "next/link";
 import FirstNewsCard from "./components/FirstNewsCard";
+import MostReadCard from "./components/MostReadCard";
 import NewsCard from "./components/NewsCard";
 import { IArticle, INews } from "./types/type";
 
@@ -8,9 +10,13 @@ export default async function Home() {
   });
 
   const data = await res.json();
-
   const sectionNews = data.data;
   const firstNews = sectionNews[0];
+
+  const mostReadRes = await fetch(
+    "https://news-api-v2.vercel.app/api/news/most-read",
+  );
+  const readData = await mostReadRes.json();
 
   const excludedIds = [
     "urn:bbc:tipo:list:705fa609-e889-42f3-b3b5-c324305a4772",
@@ -26,7 +32,7 @@ export default async function Home() {
   const remainFirstNews = firstNews.articles.slice(1, 7);
 
   return (
-    <main className="w-full py-6">
+    <main className="w-full py-6 px-4 md:px-0">
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         {/* Main News Section */}
         <section className="lg:col-span-2">
@@ -48,17 +54,19 @@ export default async function Home() {
                   key={item.id}
                   className="group border-b border-gray-200 px-4 py-3 last:border-b-0 hover:bg-gray-50 cursor-pointer"
                 >
-                  <div className="flex gap-3">
-                    <div>
-                      <p className="mb-1 text-sm font-semibold text-red-700">
-                        {firstNews.title}
-                      </p>
+                  <Link href={`/article/${item.id}`}>
+                    <div className="flex gap-3">
+                      <div>
+                        <p className="mb-1 text-sm font-semibold text-red-700">
+                          {firstNews.title}
+                        </p>
 
-                      <h3 className="text-sm font-semibold leading-6 text-gray-800 transition-colors group-hover:text-red-700">
-                        {item.title}
-                      </h3>
+                        <h3 className="text-sm font-semibold leading-6 text-gray-800 transition-colors group-hover:text-red-700">
+                          {item.title}
+                        </h3>
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 </article>
               ))}
             </div>
@@ -69,7 +77,7 @@ export default async function Home() {
                 <h1 className="text-black font-bold py-2 border-b-2 border-red-700">
                   {item.title}
                 </h1>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 py-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 py-4">
                   {item.articles.map((artileItem) => (
                     <NewsCard
                       key={artileItem.id}
@@ -84,21 +92,19 @@ export default async function Home() {
         </section>
 
         {/* Right Sidebar */}
-        {/* <aside className="lg:col-span-1">
+        <aside className="lg:col-span-1">
           <div className="overflow-hidden rounded-md border border-gray-200 bg-white shadow-sm">
-            <div className="flex items-center gap-3 border-b border-gray-200 px-4 py-3">
-              <span className="h-5 w-1 rounded-full bg-red-700" />
+            <div className="flex flex-col gap-3 border-b border-gray-200 px-4 py-3">
+              <h2 className="font-bold text-green-600">সর্বাধিক পঠিত</h2>
 
-              <h2 className="text-lg font-bold text-gray-800">সর্বশেষ সংবাদ</h2>
+              <div className="flex flex-col gap-2">
+                {readData.data.map((item: IArticle, index: number) => (
+                  <MostReadCard key={item.id} data={item} index={index} />
+                ))}
+              </div>
             </div>
-
-            {/* <div className="p-4">
-              <p className="text-sm leading-6 text-gray-500">
-                সর্বশেষ জাতীয় ও আন্তর্জাতিক সংবাদ এখানে দেখতে পাবেন।
-              </p>
-            </div> */}
-        {/* </div>
-        </aside> */}
+          </div>
+        </aside>
       </div>
     </main>
   );

@@ -38,16 +38,22 @@ const NavbarMobileScreen = ({ navLinks }: NavbarMobileScreenProps) => {
   return (
     <div className="relative md:hidden">
       {/* ================= MOBILE HEADER ================= */}
-      <div className="flex min-h-[60px] items-center py-2">
-        {/* Date */}
-        <div className="flex w-1/3 items-center justify-start overflow-hidden">
-          <p className="truncate text-[9px] font-medium text-gray-500 sm:text-[10px]">
-            {date}
-          </p>
+      <div className="flex min-h-[72px] items-center justify-between py-2">
+        {/* Menu Button */}
+        <div className="flex w-1/4 justify-start">
+          <button
+            type="button"
+            onClick={handleToggle}
+            aria-label={toggle ? "Close navigation" : "Open navigation"}
+            aria-expanded={toggle}
+            className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-md border border-gray-200 bg-gray-50 text-gray-700 transition-all duration-200 hover:bg-gray-100 active:scale-95 sm:h-10 sm:w-10"
+          >
+            {toggle ? <FaXmark size={19} /> : <FaBars size={19} />}
+          </button>
         </div>
 
-        {/* Logo */}
-        <div className="flex w-1/3 items-center justify-center">
+        {/* Logo + Date */}
+        <div className="flex w-1/2 flex-col items-center justify-center">
           <Link href="/" onClick={closeMenu} className="inline-flex">
             <Image
               src={logo}
@@ -56,19 +62,21 @@ const NavbarMobileScreen = ({ navLinks }: NavbarMobileScreenProps) => {
               className="h-auto w-[65px] object-contain sm:w-[75px]"
             />
           </Link>
+
+          {/* Date */}
+          <p className="mt-1 max-w-full truncate px-1 text-center text-[9px] font-medium text-gray-500 sm:text-[10px]">
+            {date}
+          </p>
         </div>
 
-        {/* Menu Button */}
-        <div className="flex w-1/3 justify-end">
-          <button
-            type="button"
-            onClick={handleToggle}
-            aria-label={toggle ? "Close navigation" : "Open navigation"}
-            aria-expanded={toggle}
-            className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-md bg-gray-100 text-gray-700 transition-all duration-200 hover:bg-gray-200 active:scale-95 sm:h-10 sm:w-10"
+        {/* Auth Buttons */}
+        <div className="flex w-1/4 items-center justify-end gap-1.5 sm:gap-2">
+          <Link
+            href="/sign-in"
+            className="rounded-md border border-gray-200 px-2 py-1.5 text-[10px] font-medium text-white bg-green-700 transition-colors hover:bg-gray-100 sm:px-3 sm:text-xs"
           >
-            {toggle ? <FaXmark size={19} /> : <FaBars size={19} />}
-          </button>
+            Sign In
+          </Link>
         </div>
       </div>
 

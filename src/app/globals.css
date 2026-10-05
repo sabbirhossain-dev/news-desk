@@ -1,5 +1,7 @@
 @import "tailwindcss";
 @plugin "daisyui";
+/* @import "@heroui/styles";  */
+
 
 
 body {

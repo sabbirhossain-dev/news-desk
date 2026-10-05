@@ -15,8 +15,8 @@ const Marquee = async () => {
 
   return (
     <div className="bg-green-700 text-white">
-      <div className="max-w-7xl mx-auto flex items-center ">
-        <p className="px-3 font-bold bg-green-800 py-2">সর্বশেষ</p>
+      <div className="max-w-7xl mx-auto flex items-center pr-4 pl-0 md:px-8 lg:px-0 ">
+        <p className="px-3 pl-4 md:pl-3 font-bold bg-green-800 py-2">সর্বশেষ</p>
         <MarqueeText direction="right" duration={15}>
           <div className="flex items-center whitespace-nowrap animate-marquee">
             {[...headlines, ...headlines].map((item, index) => (

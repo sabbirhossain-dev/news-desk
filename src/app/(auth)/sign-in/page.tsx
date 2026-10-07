@@ -56,6 +56,25 @@ export default function SignIn() {
     }
   };
 
+  const handleGoogleClick = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
+    if (data) {
+      toast.success("Logged in Successfully !");
+    }
+  };
+
+  const handleGithubClick = async () => {
+    const data = await authClient.signIn.social({
+      provider: "github",
+    });
+    if (data) {
+      toast.success("Logged in Successfully !");
+    }
+    console.log("CLICKED");
+  };
+
   return (
     <div className="min-h-screen bg-white px-4 py-10 sm:px-6 lg:py-16">
       <div className="mx-auto w-full max-w-md">
@@ -245,8 +264,9 @@ export default function SignIn() {
 
             {/* ================= GOOGLE SIGN IN ================= */}
             <button
+              onClick={handleGoogleClick}
               type="button"
-              className="flex h-12 w-full items-center justify-center gap-3 rounded-xl border border-gray-200 bg-white text-sm font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-50 hover:shadow-sm active:scale-[0.98]"
+              className="cursor-pointer flex h-12 w-full items-center justify-center gap-3 rounded-xl border border-gray-200 bg-white text-sm font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-50 hover:shadow-sm active:scale-[0.98]"
             >
               {/* Google Icon */}
               <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
@@ -271,6 +291,15 @@ export default function SignIn() {
                 />
               </svg>
               Google দিয়ে চালিয়ে যান
+            </button>
+
+            <button
+              onClick={handleGithubClick}
+              type="button"
+              className="cursor-pointer flex h-12 w-full items-center justify-center gap-3 rounded-xl border border-gray-200 bg-white text-sm font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-50 hover:shadow-sm active:scale-[0.98]"
+            >
+              {/* Google Icon */}
+              GitHub দিয়ে চালিয়ে যান
             </button>
           </form>
 

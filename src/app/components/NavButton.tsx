@@ -21,10 +21,10 @@ const NavButton = () => {
 
   const handleSignOut = async () => {
     await authClient.signOut();
-    toast.success("Logged out successfully!");
+    toast.info("Logged out successfully!");
     // callbackURL: "/"
   };
-  console.log(session?.user);
+  // console.log(session?.user);
   return (
     <>
       {session ? (

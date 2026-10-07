@@ -1,7 +1,9 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
+import { toast } from "react-toastify";
 
 export default function SignIn() {
   const [isVisible, setIsVisible] = useState(false);
@@ -11,12 +13,12 @@ export default function SignIn() {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     let isValid = true;
 
-    // ইমেইল ভ্যালিডেশন
+    // Email validation
     if (!email) {
       setEmailError("ইমেইল ঠিকানা প্রদান করুন");
       isValid = false;
@@ -27,20 +29,9 @@ export default function SignIn() {
       setEmailError("");
     }
 
-    // পাসওয়ার্ড ভ্যালিডেশন
+    // Password validation
     if (!password) {
       setPasswordError("পাসওয়ার্ড প্রদান করুন");
-      isValid = false;
-    } else if (password.length < 8) {
-      setPasswordError("পাসওয়ার্ড কমপক্ষে ৮ অক্ষরের হতে হবে");
-      isValid = false;
-    } else if (!/[A-Z]/.test(password)) {
-      setPasswordError(
-        "পাসওয়ার্ডে কমপক্ষে ১টি বড় হাতের ইংরেজি অক্ষর থাকতে হবে",
-      );
-      isValid = false;
-    } else if (!/[0-9]/.test(password)) {
-      setPasswordError("পাসওয়ার্ডে কমপক্ষে ১টি সংখ্যা থাকতে হবে");
       isValid = false;
     } else {
       setPasswordError("");
@@ -49,10 +40,20 @@ export default function SignIn() {
     if (!isValid) return;
 
     // পরবর্তীতে এখানে authentication logic যোগ করবে
-    console.log({
+
+    const { data, error } = await authClient.signIn.email({
       email,
       password,
+      callbackURL: "/",
     });
+
+    if (data) {
+      toast.success(`Welcome, ${data.user.name}!`);
+    }
+
+    if (error) {
+      toast.error("Failed to sign in. Please check your email and password.");
+    }
   };
 
   return (

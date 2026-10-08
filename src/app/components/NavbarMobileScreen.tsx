@@ -73,7 +73,7 @@ const NavbarMobileScreen = ({ navLinks }: NavbarMobileScreenProps) => {
         </div>
 
         {/* Auth Buttons */}
-        <div className="flex w-1/3 items-center justify-end gap-1.5 sm:gap-2">
+        <div className="flex w-1/2 items-center justify-end gap-1.5 sm:gap-2">
           {/* <Link
             href="/sign-in"
             className="rounded-md border border-gray-200 px-2 py-1.5 text-[10px] font-medium text-white bg-green-700 transition-colors hover:bg-gray-100 sm:px-3 sm:text-xs"

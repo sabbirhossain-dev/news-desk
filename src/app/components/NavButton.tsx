@@ -83,7 +83,7 @@ const NavButton = () => {
 
                   <div className="min-w-0">
                     <p className="truncate text-sm font-semibold text-gray-800">
-                      User Account
+                      {session?.user.name || "User"}
                     </p>
                     <Link href="/profile" onClick={() => setUser(!user)}>
                       <p className="text-xs text-gray-500 hover:text-green-600 transition-all duration-300">
@@ -147,17 +147,17 @@ const NavButton = () => {
           {/* Logout Button */}
         </div>
       ) : (
-        <div className="flex w-1/3 justify-end gap-2">
+        <div className="flex w-full md:w-1/3 justify-end gap-2">
           <Link
             href="/sign-in"
-            className="rounded-md border border-green-700 bg-white px-2.5 py-1.5 pt-2 text-[10px] font-semibold text-green-700 transition-all duration-200 hover:bg-green-700 hover:text-white active:scale-95 sm:px-3 sm:text-sm"
+            className="rounded-md border border-green-700 bg-white px-2 py-1 md:px-2.5 md:py-1.5 pt-1 md:pt-2 text-[10px] font-semibold text-green-700 transition-all duration-200 hover:bg-green-700 hover:text-white active:scale-95 sm:px-3 sm:text-sm flex items-center gap-1"
           >
             সাইন ইন
           </Link>
 
           <Link
             href="/sign-up"
-            className="rounded-md bg-red-600 px-2.5 py-1.5 pt-2 text-[10px] font-semibold text-white shadow-sm transition-all duration-200 hover:bg-red-700 hover:shadow-md active:scale-95 sm:px-3 sm:text-sm "
+            className="rounded-md bg-red-600 px-2 py-1 md:px-2.5 md:py-1.5 pt-1 md:pt-2 text-[10px] font-semibold text-white shadow-sm transition-all duration-200 hover:bg-red-700 hover:shadow-md active:scale-95 sm:px-3 sm:text-sm flex items-center gap-1"
           >
             সাইন আপ
           </Link>
